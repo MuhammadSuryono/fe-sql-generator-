@@ -1,5 +1,4 @@
 import React from 'react';
-import caasy from '@caasy/sdk-js';
 
 import Main from '../components/layout/main/Main';
 import PostPreview from '../components/postPreview/PostPreview';
@@ -46,13 +45,14 @@ export const getStaticProps = async (ctx) => {
     // in the entire app. However, when running "next export",
     // this configuration is not persisted and therefore it is
     // necessary to initialize the SDK every time before using it.
-    caasy.init(blogConfig.caasySDKConfig);
+    // caasy.init(blogConfig.caasySDKConfig);
     
     // Determine the page for which the blog posts should be shown
     const currentPage = +(ctx?.params?.currentPage || '1');
     
     // Fetch all posts for blog posts for the active page from Caasy
-    const posts = await caasy.posts.getAll(currentPage);
+    // const posts = await caasy.posts.getAll(currentPage);
+    const posts = { data: [], totalItems: 0,  itemsPerPage: 10}
     
     // Calculate the nnavigation
     const pageControls = utils.getPages(posts.totalItems, posts.itemsPerPage, currentPage) || [];

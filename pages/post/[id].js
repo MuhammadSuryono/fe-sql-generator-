@@ -1,5 +1,4 @@
 import React from 'react';
-import caasy from '@caasy/sdk-js';
 
 import BlogPost from '../../components/blogPost/BlogPost';
 
@@ -25,7 +24,8 @@ export const getStaticProps = async (ctx) => {
     const postId = ctx.params.id;
     
     // Fetch the blog post from Caasy
-    const post = await caasy.posts.getById(postId);
+    // const post = await caasy.posts.getById(postId);
+    const post = {};
     
     // Pass the post data to the component
     return { props: post };
@@ -41,10 +41,11 @@ export const getStaticPaths = async () => {
     // in the entire app. However, when running "next export",
     // this configuration is not persisted and therefore it is
     // necessary to initialize the SDK every time before using it.
-    caasy.init(blogConfig.caasySDKConfig);
+    // caasy.init(blogConfig.caasySDKConfig);
     
     // Fetch all blog post IDs
-    const allBlogPostIds = await caasy.posts.getAllIds();
+    // const allBlogPostIds = await caasy.posts.getAllIds();
+    const allBlogPostIds = [];
     
     // Get all IDs
     const paths = allBlogPostIds.map(id => ({ params: { id } }));
